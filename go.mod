@@ -1,4 +1,4 @@
-module eggsm
+module github.com/tatsuki9/eggsm
 
 go 1.14
 

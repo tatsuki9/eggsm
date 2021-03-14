@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"eggsm/internal"
+	"github.com/tatsuki9/eggsm/internal"
 	"github.com/urfave/cli"
 )
 
