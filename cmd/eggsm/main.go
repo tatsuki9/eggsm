@@ -16,11 +16,7 @@ func main() {
 				Usage: "Enter the characters",
 			},
 			&cli.StringFlag{
-				Name:  "prefix",
-				Usage: "Enter the characters",
-			},
-			&cli.StringFlag{
-				Name:  "env",
+				Name:  "secret_id",
 				Usage: "Enter the characters",
 			},
 		},

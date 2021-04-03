@@ -2,7 +2,6 @@ package internal
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/secretsmanager"
@@ -12,14 +11,13 @@ import (
 // GetSecretValues ... get values from secret manager
 func GetSecretValues(c *cli.Context) (map[string]interface{}, error) {
 	profile := c.String("profile")
-	prefix := c.String("prefix")
-	env := c.String("env")
+	secretID := c.String("secret_id")
 	sess := session.Must(session.NewSessionWithOptions(session.Options{Profile: profile}))
 	svc := secretsmanager.New(
 		sess,
 		aws.NewConfig().WithRegion("ap-northeast-1"))
 	input := &secretsmanager.GetSecretValueInput{
-		SecretId:     aws.String(getSecretName(prefix, env)),
+		SecretId:     aws.String(secretID),
 		VersionStage: aws.String("AWSCURRENT"), // VersionStage defaults to AWSCURRENT if unspecified
 	}
 	result, err := svc.GetSecretValue(input)
@@ -32,8 +30,4 @@ func GetSecretValues(c *cli.Context) (map[string]interface{}, error) {
 		return nil, err
 	}
 	return res, nil
-}
-
-func getSecretName(prefix, env string) string {
-	return fmt.Sprintf("%s.%s", prefix, env)
 }
