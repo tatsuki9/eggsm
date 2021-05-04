@@ -10,8 +10,9 @@ import (
 
 // GetSecretValues ... get values from secret manager
 func GetSecretValues(c *cli.Context) (map[string]interface{}, error) {
+	profile := c.String("profile")
 	secretID := c.String("secret_id")
-	sess := session.Must(session.NewSession())
+	sess := session.Must(session.NewSessionWithOptions(session.Options{Profile: profile}))
 	svc := secretsmanager.New(
 		sess,
 		aws.NewConfig().WithRegion("ap-northeast-1"))

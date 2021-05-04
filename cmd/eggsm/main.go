@@ -12,6 +12,10 @@ func main() {
 	app := &cli.App{
 		Flags: []cli.Flag{
 			&cli.StringFlag{
+				Name:  "profile",
+				Usage: "Enter the characters",
+			},
+			&cli.StringFlag{
 				Name:  "secret_id",
 				Usage: "Enter the characters",
 			},
